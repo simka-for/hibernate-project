@@ -30,7 +30,7 @@ public class Main {
 //
 //        session.save(sub);
 
-        Teacher teacher = session.get(Teacher.class, 10);
+        Teacher teacher = session.get(Teacher.class, 1);
         List<Course> coursesOnTeacher = teacher.getCourses();
         coursesOnTeacher.forEach( course -> course.getDuration());
 

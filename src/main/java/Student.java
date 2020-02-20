@@ -1,3 +1,5 @@
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Student {
     private Date registrationDate;
 
     @OneToMany(mappedBy = "student")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Subscription> subscriptions;
 
 

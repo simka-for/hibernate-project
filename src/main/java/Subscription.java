@@ -6,10 +6,10 @@ import java.util.Date;
 @Table(name = "Subscriptions")
 public class Subscription {
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "student_id")
     public Student student;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "course_id")
     public Course course;
     @Column(name = "subscription_date")
