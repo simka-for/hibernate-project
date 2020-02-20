@@ -16,15 +16,12 @@ public class Student {
     @Column(name = "registration_date")
     private Date registrationDate;
 
-    @OneToMany(mappedBy = "student")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<Subscription> subscriptions;
-
-
-    public Student(String name, int age){
-        this.name = name;
-        this.age = age;
-    }
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "Subscriptions",
+            joinColumns = {@JoinColumn(name = "student_id")},
+            inverseJoinColumns = {@JoinColumn(name = "course_id")})
+    private List<Course> courseList;
+    
 
     public int getId() {
         return id;
@@ -56,6 +53,14 @@ public class Student {
 
     public void setRegistrationDate(Date registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public List<Course> getCourseList() {
+        return courseList;
+    }
+
+    public void setCourseList(List<Course> courseList) {
+        this.courseList = courseList;
     }
 
     @Override
