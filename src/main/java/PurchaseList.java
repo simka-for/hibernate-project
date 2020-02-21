@@ -1,49 +1,28 @@
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
-@Embeddable
+@Entity
 @Table(name = "Purchaselist")
 public class PurchaseList {
 
-    @Column(name = "student_name")
-    private String studentName;
-    @Column(name = "course_name")
-    private String courseName;
+    @EmbeddedId
+    private PurchaseListId purchaseListId;
+
     private int price;
+
     @Column(name = "subscription_date")
     public Date subscriptionDate;
 
-    public String getStudentName() {
-        return studentName;
-    }
+    @Embeddable
+    public class PurchaseListId implements Serializable {
 
-    public void setStudentName(String studentName) {
-        this.studentName = studentName;
-    }
+        @ManyToOne
+        @JoinColumn(name = "student_name")
+        private Student student;
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public Date getSubscriptionDate() {
-        return subscriptionDate;
-    }
-
-    public void setSubscriptionDate(Date subscriptionDate) {
-        this.subscriptionDate = subscriptionDate;
+        @ManyToOne
+        @JoinColumn(name = "course_name")
+        private Course course;
     }
 }

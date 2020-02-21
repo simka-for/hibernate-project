@@ -28,6 +28,12 @@ public class Course {
     inverseJoinColumns = {@JoinColumn(name = "student_id")})
     List<Student> students;
 
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<Subscription> subscriptions;
+
+    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+    private List<PurchaseList> purchaseLists;
+
     public int getId() {
         return id;
     }
