@@ -7,16 +7,16 @@ public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private int duration;
     @Enumerated(EnumType.STRING)
     @Column(columnDefinition = "enum")
     private CourseType type;
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Teacher teacher;
-    @Column(name = "students_count")
+    @Column(name = "students_count", nullable = true)
     private int studentsCount;
     private int price;
     @Column(name = "price_per_hour")
@@ -31,8 +31,8 @@ public class Course {
     @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
     private List<Subscription> subscriptions;
 
-    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
-    private List<PurchaseList> purchaseLists;
+//    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
+//    private List<PurchaseList> purchaseLists;
 
     public int getId() {
         return id;

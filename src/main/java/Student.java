@@ -11,7 +11,7 @@ public class Student implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private int age;
     @Column(name = "registration_date")
@@ -26,15 +26,15 @@ public class Student implements Serializable {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Subscription> subscriptions;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<PurchaseList> purchaseLists;
-    
+//    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+//    private List<PurchaseList> purchaseLists;
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -68,6 +68,14 @@ public class Student implements Serializable {
 
     public void setCourseList(List<Course> courseList) {
         this.courseList = courseList;
+    }
+
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
     }
 
     @Override

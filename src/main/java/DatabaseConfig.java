@@ -36,9 +36,12 @@ public class DatabaseConfig {
 //        List<Course> coursesOnTeacher = teacher.getCourses();
 //        coursesOnTeacher.forEach( course -> course.getDuration());
 
-        Student student = session.get(Student.class, 30);
-        List<Course> courses = student.getCourseList();
-        courses.forEach(course -> course.getTeacher().getName());
+        Student student = session.get(Student.class, 12);
+        List<Subscription> subscriptions = student.getSubscriptions();
+        for (Subscription subscription : subscriptions){
+            System.out.println(subscription.getCourse().getName());
+        }
+
 
 
         transaction.commit();
