@@ -4,7 +4,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Purchaselist")
-public class PurchaseList {
+public class PurchaseList implements Serializable{
 
     @EmbeddedId
     private PurchaseListId purchaseListId;
@@ -18,7 +18,7 @@ public class PurchaseList {
     private int price;
 
     @Column(name = "subscription_date")
-    public Date subscriptionDate;
+    private Date subscriptionDate;
 
     @Embeddable
     public static class PurchaseListId implements Serializable {

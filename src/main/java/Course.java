@@ -1,9 +1,10 @@
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "Courses")
-public class Course {
+public class Course implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,11 +35,12 @@ public class Course {
 //    @OneToMany(mappedBy = "course", cascade = CascadeType.ALL)
 //    private List<PurchaseList> purchaseLists;
 
-    public int getId() {
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -109,8 +111,16 @@ public class Course {
     public List<Student> getStudents() {
         return students;
     }
+
     public void setStudents(List<Student> students) {
         this.students = students;
     }
 
+    public List<Subscription> getSubscriptions() {
+        return subscriptions;
+    }
+
+    public void setSubscriptions(List<Subscription> subscriptions) {
+        this.subscriptions = subscriptions;
+    }
 }

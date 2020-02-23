@@ -5,7 +5,7 @@ import java.util.Date;
 
 @Entity
 @Table(name = "Subscriptions")
-public class Subscription {
+public class Subscription implements Serializable{
 
     @EmbeddedId
     private SubscriptionId subscriptionId;
