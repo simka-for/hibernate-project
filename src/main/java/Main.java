@@ -27,9 +27,6 @@ public class Main {
 
 
 
-        session.createQuery(Request.fillLinkedPurchaseList).executeUpdate();
-
-
         transaction.commit();
         sessionFactory.close();
     }

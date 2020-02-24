@@ -1,4 +1,4 @@
-import org.hibernate.annotations.Cascade;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -7,6 +7,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "Students")
+@Data
 public class Student implements Serializable {
 
     @Id
@@ -26,65 +27,7 @@ public class Student implements Serializable {
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Subscription> subscriptions;
 
-//    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-//    private List<PurchaseList> purchaseLists;
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<PurchaseList> purchaseLists;
 
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Date getRegistrationDate() {
-        return registrationDate;
-    }
-
-    public void setRegistrationDate(Date registrationDate) {
-        this.registrationDate = registrationDate;
-    }
-
-    public List<Course> getCourseList() {
-        return courseList;
-    }
-
-    public void setCourseList(List<Course> courseList) {
-        this.courseList = courseList;
-    }
-
-    public List<Subscription> getSubscriptions() {
-        return subscriptions;
-    }
-
-    public void setSubscriptions(List<Subscription> subscriptions) {
-        this.subscriptions = subscriptions;
-    }
-
-    @Override
-    public String toString() {
-        return "Student{" +
-                "id = " + id +
-                ", name = '" + name + '\'' +
-                ", age = " + age +
-                ", registrationDate = " + registrationDate +
-                '}';
-    }
 }
