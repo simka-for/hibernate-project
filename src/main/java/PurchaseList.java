@@ -3,6 +3,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Formatter;
 
 @Entity
 @Table(name = "Purchaselist")
@@ -26,12 +27,16 @@ public class PurchaseList implements Serializable {
     @Column(name = "subscription_date")
     private Date subscriptionDate;
 
+    @Override
+    public String toString() {
+        return new Formatter().format("PurchaseList (studentName: %s, courseName: %s, subscriptionDate: %3$td.%3$tm.%3$tY)",
+                purchaseListId.studentName, purchaseListId.courseName, subscriptionDate).toString();
+    }
     @Data
     @AllArgsConstructor
     @EqualsAndHashCode
     @Embeddable
     public static class PurchaseListId implements Serializable {
-
         @Column(name = "student_name")
         String studentName;
 
@@ -40,8 +45,8 @@ public class PurchaseList implements Serializable {
 
         @SuppressWarnings("unused")
         PurchaseListId(){}
-
     }
+
 }
 
 
